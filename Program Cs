@@ -1,75 +1,72 @@
 static void Main(string[] args)
 {
-    
-    int user_input;
+    byte user_input;
     double a, b, R;
-    while (true) { 
-
+    while (true)
+    {
         Console.WriteLine("Enter Your figure (1 -  Circle , 2 - Isosceles Triangle , 3 - Square)");
-        while (!int.TryParse(Console.ReadLine(), out user_input))
+        while (!byte.TryParse(Console.ReadLine(), out user_input))
         {
-            Console.WriteLine("Enter a right figure!");
+            Console.WriteLine("Enter a correct figure!");
         }
+
         switch (user_input)
         {
             case 1:
                 Console.WriteLine("Enter Radius of Circle:");
-                while (!double.TryParse(Console.ReadLine(), out R)) 
-                    Console.WriteLine("Enter a right Radius!");
-                
+                while (!double.TryParse(Console.ReadLine().Replace('.', ','), out R))
+                    Console.WriteLine("Enter a correct Radius!");
+
                 ForCircle(R);
                 break;
             case 2:
                 Console.WriteLine("Enter Lateral side of a triangle:");
-                while (!double.TryParse(Console.ReadLine(), out a))                      
-                    Console.WriteLine("Enter a right Side!");                        
+                while (!double.TryParse(Console.ReadLine().Replace('.', ','), out a))
+                    Console.WriteLine("Enter a correct Side!");
                 Console.WriteLine("Enter The base of a triangle:");
-                while (!double.TryParse(Console.ReadLine(), out b))
-                    Console.WriteLine("Enter a right Base!");
+                while (!double.TryParse(Console.ReadLine().Replace('.', ','), out b))
+                    Console.WriteLine("Enter a correct Base!");
                 if (a * 2 <= b || b * 2 <= a || a <= 0 || b <= 0)
                     Console.WriteLine("Such a triangle does not exist!");
                 else
-                ForTriangle(a, b);
+                    ForTriangle(a, b);
                 break;
-                case 3:
-                    Console.WriteLine("Enter one side of a Square:");
-                while (!double.TryParse(Console.ReadLine(), out a))
+            case 3:
+                Console.WriteLine("Enter one side of a Square:");
+                while (!double.TryParse(Console.ReadLine().Replace('.', ','), out a))
                 {
-                    Console.WriteLine("Enter a right Side!");
+                    Console.WriteLine("Enter correct Value!");
                 }
                 ForSquare(a);
                 break;
             default:
                 Console.WriteLine("Your Enter Doesnt Exist!");
                 break;
-            }
-
-
-
-
+        }
 
         Console.ReadLine();
         Console.Clear();
-
     }
 }
 
 public static void ForCircle(double R)
 {
     Console.WriteLine("Your Area of a Circle = " + Math.Round
-        (Math.Round(Math.PI, 2,MidpointRounding.AwayFromZero) * Math.Pow(R,2), 2, MidpointRounding.AwayFromZero));
-    Console.WriteLine("Your Length of a Circle = " +  Math.Round
-        (Math.Round(Math.PI,2,MidpointRounding.AwayFromZero) * R * 2,2,MidpointRounding.AwayFromZero));
+        (Math.Round(Math.PI, 2, MidpointRounding.AwayFromZero) * Math.Pow(R, 2), 2, MidpointRounding.AwayFromZero));
+    Console.WriteLine("Your Length of a Circle = " + Math.Round
+        (Math.Round(Math.PI, 2, MidpointRounding.AwayFromZero) * R * 2, 2, MidpointRounding.AwayFromZero));
 }
+
+
 public static void ForTriangle(double a, double b)
 {
     Console.WriteLine("Your Perimeter of a Triangle: = " + (a * 2 + b));
-    Console.WriteLine("Your Area of a Triangle: = " + Math.Round(0.5 * b * Math.Sqrt((a + 0.5 * b) * (a - 0.5*b)), 2, MidpointRounding.AwayFromZero));
-}
-public static void ForSquare(double a)
-{
-    Console.WriteLine("Your Perimeter of a Square = " + a*4);
-    Console.WriteLine("Your Area of a Square = " + Math.Round(Math.Pow(a,2),2,MidpointRounding.AwayFromZero));
+    Console.WriteLine("Your Area of a Triangle: = " + Math.Round(0.5 * b * Math.Sqrt((a + 0.5 * b) * (a - 0.5 * b)), 2, MidpointRounding.AwayFromZero));
 }
 
-        
+
+public static void ForSquare(double a)
+{
+    Console.WriteLine("Your Perimeter of a Square = " + a * 4);
+    Console.WriteLine("Your Area of a Square = " + Math.Round(Math.Pow(a, 2), 2, MidpointRounding.AwayFromZero));
+}
